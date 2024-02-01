@@ -1,0 +1,19 @@
+"""Defines lambda function to handle creation of S3 text object."""
+
+import logging
+
+
+logger = logging.getLogger('MyLogger')
+logger.setLevel(logging.INFO)
+
+code = "RANDOM_CODE"
+creation_time = "CREATION_TIME"
+
+
+def lambda_handler(event, context):
+    try:
+        logger.info("HELLO my CODE is {code}")
+        logger.info("I was CREATED at {creation_time}")
+    except Exception as e:
+        logger.error(e)
+        raise RuntimeError

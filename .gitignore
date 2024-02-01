@@ -1,0 +1,4 @@
+venv
+lambda.py
+terraform.tfstate
+terraform.tfstate.backup
