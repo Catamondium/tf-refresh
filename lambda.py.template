@@ -12,8 +12,15 @@ creation_time = "CREATION_TIME"
 
 def lambda_handler(event, context):
     try:
-        logger.info("HELLO my CODE is {code}")
-        logger.info("I was CREATED at {creation_time}")
+        logger.info(f"HELLO my CODE is {code}")
+        logger.info(f"I was CREATED at {creation_time}")
+
+        return  {
+            'data': {
+                'code': code,
+                'created_at': creation_time,
+                }
+        }
     except Exception as e:
         logger.error(e)
         raise RuntimeError
