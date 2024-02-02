@@ -12,4 +12,8 @@ resource "aws_lambda_function" "zipped" {
     log_format = "Text"
     log_group  = aws_cloudwatch_log_group.logger.name
   }
+
+  lifecycle {
+    replace_triggered_by = [null_resource.sauce]
+  }
 }

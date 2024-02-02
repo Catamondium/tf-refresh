@@ -33,6 +33,7 @@ requirements: create-environment
 
 generate:
 	$(call execute_in_env, $(PYTHON_INTERPRETER) generate.py)
+	@date +%c > /tmp/date
 
 plan:
 	cd terraform && terraform plan
@@ -50,7 +51,8 @@ fullrestore: generate
 list:
 	aws lambda list-functions | jq .Functions[].FunctionName
 
-invoke:
+invoke: apply
+	cat /tmp/date
 	aws lambda invoke --log-type Tail --function-name random-bucket /tmp/outgoing | jq .LogResult | tr -d '"' | base64 -d
 	cat /tmp/outgoing
 	@printf "\n\n"

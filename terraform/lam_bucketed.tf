@@ -13,4 +13,8 @@ resource "aws_lambda_function" "bucketed" {
     log_format = "Text"
     log_group  = aws_cloudwatch_log_group.logger.name
   }
+
+  lifecycle {
+    replace_triggered_by = [aws_s3_object.code]
+  }
 }
